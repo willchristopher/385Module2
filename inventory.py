@@ -1,4 +1,4 @@
-from product import Product  # Importing the Product class from product module
+from product import Product
 
 class Inventory:
     def __init__(self):
@@ -7,33 +7,52 @@ class Inventory:
 
     def add_product(self, product):
         # Method to add a product to the inventory
-        self.products[product.product_id] = product  # Adding the product to the dictionary with product_id as the key
+        self.products[product.product_id] = product
 
     def update_product(self, product_id, name=None, category=None, quantity=None, price=None):
         # Method to update an existing product's details in the inventory
         if product_id in self.products:
-            # If the product exists in the inventory, update its details
             if name:
-                self.products[product_id].name = name  # Update name if provided
+                self.products[product_id].name = name
             if category:
-                self.products[product_id].category = category  # Update category if provided
-            if quantity:
-                self.products[product_id].quantity = quantity  # Update quantity if provided
-            if price:
-                self.products[product_id].price = price  # Update price if provided
+                self.products[product_id].category = category
+            if quantity is not None:
+                self.products[product_id].quantity = quantity
+            if price is not None:
+                self.products[product_id].price = price
         else:
-            # If the product does not exist, print an error message
             print("Product not found.")
 
     def delete_product(self, product_id):
         # Method to delete a product from the inventory
         if product_id in self.products:
-            del self.products[product_id]  # Remove the product from the dictionary
+            del self.products[product_id]
         else:
-            # If the product does not exist, print an error message
             print("Product not found.")
 
-    def view_inventory(self):
-        # Method to view all products in the inventory
+    def search_product_by_name(self, name_query):
+        # Method to search for products by name in the inventory
+        results = []
+        for product_id, product in self.products.items():
+            if name_query.lower() in product.name.lower():
+                results.append(product)
+        return results
+
+    def check_reorder_threshold(self, threshold=5):
+        # Method to check for products with quantity below a specified threshold
+        low_stock_products = []
         for product in self.products.values():
-            print(product)  # Print the string representation of each product
+            if product.quantity < threshold:
+                low_stock_products.append(product)
+        return low_stock_products
+
+    def view_inventory(self):
+        # Method to display the current inventory
+        if not self.products:
+            print("Inventory is empty.")
+            return
+        print("\nCurrent Inventory:")
+        print(f"{'ID':<10}{'Name':<20}{'Category':<15}{'Quantity':<10}{'Price':<10}")
+        print("-" * 65)
+        for product in self.products.values():
+            print(f"{product.product_id:<10}{product.name:<20}{product.category:<15}{product.quantity:<10}{product.price:<10.2f}")

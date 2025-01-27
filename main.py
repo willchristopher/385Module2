@@ -5,7 +5,6 @@ from inventory import Inventory  # Import the Inventory class from the inventory
 from product import Product      # Import the Product class from the product module
 
 def main():
-    """Main function to run the Inventory Management System."""
     
     # Create an instance of Inventory to manage products
     inventory = Inventory()
@@ -126,4 +125,5 @@ def main():
             print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
-    main()  # Call the main function to start the program
+    #calls the main function
+    main()  

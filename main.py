@@ -13,6 +13,9 @@ def main():
     inventory.add_product(Product("1001", "Wireless Mouse", "Electronics", 10, 19.99))
     inventory.add_product(Product("1002", "Water Bottle", "Kitchen", 3, 9.99))
 
+    print("Welcome to the Inventory Management System!")
+    print("Use the numbered menu to manage your products and follow the on-screen prompts.")
+
     while True:
         # Display the menu options to the user
         print("\nInventory Management System")
@@ -25,7 +28,7 @@ def main():
         print("7. Check Low Stock")
         
         # Prompt the user to enter their choice
-        choice = input("Enter your choice: ")
+        choice = input("Enter the number corresponding to the action you want performed: ")
 
         if choice == '1':
             # Handle adding a new product
@@ -126,4 +129,4 @@ def main():
 
 if __name__ == "__main__":
     #calls the main function
-    main()  
+    main()
